@@ -51,12 +51,12 @@ namespace ExamProvider.infra.Repositary
     }
 
         public async Task<List<Exam>> get_ALLExams()
-
-
+        
         {
-            var result = await _dbContext.Connection.QueryAsync<Exam>("Exam_package.get_ALLExams", commandType: CommandType.StoredProcedure);
+            var result = await _dbContext.Connection.QueryAsync<Exam>("Exam_Package.get_ALLExams", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
+
 
         public async Task<List<Exam>> search_between_interval(DateTime firstDate, DateTime secondDate)
         {

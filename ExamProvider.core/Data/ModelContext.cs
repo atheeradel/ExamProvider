@@ -60,6 +60,10 @@ namespace ExamProvider.core.Data
                     .IsUnicode(false)
                     .HasColumnName("SERVICE_NAME");
 
+                entity.Property(e => e.UniqueKey)
+                    .HasColumnType("NUMBER")
+                    .HasColumnName("UNIQUE_KEY");
+
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("DATE")
                     .HasColumnName("UPDATED_AT");
