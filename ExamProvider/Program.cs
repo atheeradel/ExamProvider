@@ -22,8 +22,12 @@ namespace ExamProvider
             builder.Services.AddScoped<IDbContext, DbContext>();
             builder.Services.AddScoped<IExamRepositary,ExamRepositary >();
             builder.Services.AddScoped<IExamService,ExamService >();
-            
-
+            builder.Services.AddScoped<IExamOptionsRepositary,ExamOptionsRepositary >();
+            builder.Services.AddScoped<IExamOptionsService,ExamOptionsService >();
+            builder.Services.AddScoped<IExamQuestionRepositary,ExamQuestionRepositary >();
+            builder.Services.AddScoped<IExamQuestionService,ExamQuestionService >();
+            builder.Services.AddScoped<IExamUserRepositary,ExamUserRepositary >();
+            builder.Services.AddScoped<IExamUserService,ExamUserService >();
 
 
           var app = builder.Build();
