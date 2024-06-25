@@ -9,6 +9,6 @@ namespace ExamProvider.core.Data
         public string? ServiceName { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
-        public decimal? UniqueKey { get; set; }
+        public string? UniqueKey { get; set; }
     }
 }

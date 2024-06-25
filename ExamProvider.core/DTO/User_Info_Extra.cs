@@ -1,27 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ExamProvider.core.Data
+namespace ExamProvider.core.Dto
 {
-    public partial class UserInfo
+    public class User_Info_Extra
     {
-        public UserInfo()
-        {
-            UserExams = new HashSet<UserExam>();
-        }
-
         public decimal UserId { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
-        public string? Datecreation { get; set; }
+        public DateTime? Datecreation { get; set; }
         public DateTime? BirthDate { get; set; }
         public string? Email { get; set; }
         public string? Password { get; set; }
-        public decimal? RoleId { get; set; }
+        public string? RoleName { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
-
-        public virtual UserRole? Role { get; set; }
-        public virtual ICollection<UserExam> UserExams { get; set; }
     }
 }

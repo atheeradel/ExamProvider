@@ -61,7 +61,8 @@ namespace ExamProvider.core.Data
                     .HasColumnName("SERVICE_NAME");
 
                 entity.Property(e => e.UniqueKey)
-                    .HasColumnType("NUMBER")
+                    .HasMaxLength(200)
+                    .IsUnicode(false)
                     .HasColumnName("UNIQUE_KEY");
 
                 entity.Property(e => e.UpdatedAt)
@@ -293,7 +294,8 @@ namespace ExamProvider.core.Data
                     .HasColumnName("CREATED_AT");
 
                 entity.Property(e => e.Datecreation)
-                    .HasColumnType("DATE")
+                    .HasMaxLength(1000)
+                    .IsUnicode(false)
                     .HasColumnName("DATECREATION");
 
                 entity.Property(e => e.Email)
