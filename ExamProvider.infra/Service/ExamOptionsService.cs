@@ -44,5 +44,9 @@ namespace ExamProvider.infra.Service
         {
             await _examOptionsRepositary.update_ExamOptions(option);
         }
+       public async Task<string> GetAllOptions()
+        {
+            return await _examOptionsRepositary.GetAllOptions();
+        }
     }
 }

@@ -45,5 +45,12 @@ namespace ExamProvider.Controllers
         {
             await _examOptionsService.update_ExamOptions(option);
         }
+
+        [HttpGet]
+        [Route("getalloptions")]
+        public async Task<string> GetAllOptions()
+        {
+            return await _examOptionsService.GetAllOptions();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExamProvider.core.DTO;
+using System;
 using System.Collections.Generic;
 
 namespace ExamProvider.core.Data
@@ -20,5 +21,6 @@ namespace ExamProvider.core.Data
 
         public virtual Exam? Exam { get; set; }
         public virtual ICollection<QuestionOption> QuestionOptions { get; set; }
+       
     }
 }

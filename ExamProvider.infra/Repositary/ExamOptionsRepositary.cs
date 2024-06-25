@@ -3,12 +3,14 @@ using ExamProvider.core.Data;
 using ExamProvider.core.DTO;
 using ExamProvider.core.ICommon;
 using ExamProvider.core.IRepositary;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace ExamProvider.infra.Repositary
 {
@@ -72,5 +74,33 @@ namespace ExamProvider.infra.Repositary
             var result = await _dbContext.Connection.QueryAsync<getalloption>("Exam_Options.get_ALLOptions", commandType: CommandType.StoredProcedure);
             return result.ToList();
         }
+        public async Task<string> GetAllOptions()
+        {
+            var result = await _dbContext.Connection.QueryAsync<GetAllExamQuestionsDto>("Exam_Options.get_ALLOptions", commandType: CommandType.StoredProcedure);
+
+            var exams = result.GroupBy(e => new { e.ExamName, e.ExamDuration, e.ExamDescription, e.CreatedAt })
+                              .Select(g => new ExamDto
+                              {
+                                  ExamName = g.Key.ExamName,
+                                  ExamDuration = g.Key.ExamDuration,
+                                  ExamDescription = g.Key.ExamDescription,
+                                  CreatedAt = g.Key.CreatedAt,
+                                  Questions = g.GroupBy(q => new { q.QuestionDateCreation, q.QuestionLevel, q.QuestionType })
+                                               .Select(qg => new QuestionDto
+                                               {
+                                                   QuestionDateCreation = qg.Key.QuestionDateCreation,
+                                                   QuestionLevel = qg.Key.QuestionLevel,
+                                                   QuestionType = qg.Key.QuestionType,
+                                                   Options = qg.Select(o => new OptionDto
+                                                   {
+                                                       Title = o.Title,
+                                                       IsCorrect = o.IsCorrect
+                                                   }).ToList()
+                                               }).ToList()
+                              }).ToList();
+
+            return JsonConvert.SerializeObject(exams, Formatting.Indented);
+        }
+
     }
 }
